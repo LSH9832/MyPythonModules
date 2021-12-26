@@ -7,7 +7,7 @@ from . import kcftracker
 
 class KCF(object):
 
-    def __init__(self, q):
+    def __init__(self, q=None):
         self.q = q
         self.selectingObject = False
         self.initTracking = False
@@ -76,7 +76,7 @@ class KCF(object):
             cv2.rectangle(frame, (self.ix, self.iy), (self.cx, self.cy), (0, 255, 255), 1)
         elif self.initTracking:
             cv2.rectangle(frame, (self.ix, self.iy), (self.ix + self.w, self.iy + self.h), (0, 255, 255), 2)
-            print([self.ix, self.iy, self.w, self.h])
+            # print([self.ix, self.iy, self.w, self.h])
             self.tracker.init([self.ix, self.iy, self.w, self.h], frame)
 
             self.initTracking = False
@@ -108,9 +108,10 @@ class KCF(object):
         self.onTracking = False
 
 
-    def choose_bb(self, address = 0):
-        self.cap = cv2.VideoCapture(address)
-
+    def choose_bb(self, source, release_after_choosing = False):
+        self.cap = source
+        self.stop_tracking()
+        cv2.destroyAllWindows()
         cv2.namedWindow('choosing bounding box')
         cv2.setMouseCallback('choosing bounding box', self.draw_boundingbox)
 
@@ -127,6 +128,8 @@ class KCF(object):
                 break
 
         cv2.destroyAllWindows()
+        if release_after_choosing:
+            self.cap.release()
         return self.ix, self.iy, self.w, self.h
 
 def demo():
@@ -157,4 +160,4 @@ def overlap(loc1:tuple, loc2:tuple, datatype = XYWH):
 
 if __name__ == '__main__':
     # print(overlap((1,1,2,2),(0,0,1,1)))
-    demo()
+    pass
