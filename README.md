@@ -23,6 +23,35 @@
 - numba numba版本一定要安装与你安装的numpy兼容的哦
 
 #### 2.2 用法示例
-暂无
+```python3
+from KCF import KCF
+import cv2
+
+tracker = KCF()
+cam = cv2.VideoCapture(0)
+x,y,w,h = tracker.choose_bb(source=cam)
+tracker.setbb((x,y,w,h))
+
+time_delay = 1
+
+while cam.isOpened():
+    success, frame = cam.read()
+    if success:
+        frame, location = tracker.update(frame)
+        print('\rlocation(x, y, w, h): %s' % location, end='')
+        cv2.imshow('result', frame)
+        
+        press_key = cv2.waitKey(1)
+        if press_key == 27:
+            cv2.destroyAllWindows()
+            cam.release()
+            break
+        elif press_key == ord(' '):
+            time_delay = 1 - time_delay
+        elif press_key == ord('r'):
+            x, y, w, h = tracker.choose_bb(source=cam)
+            tracker.setbb((x, y, w, h))
+
+```
 
 ## 3. 暂无
