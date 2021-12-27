@@ -108,24 +108,29 @@ class KCF(object):
         self.onTracking = False
 
 
-    def choose_bb(self, source, release_after_choosing = False):
+    def choose_bb(self, source, dynamic=True, release_after_choosing=False):
         self.cap = source
         self.stop_tracking()
         cv2.destroyAllWindows()
         cv2.namedWindow('choosing bounding box')
         cv2.setMouseCallback('choosing bounding box', self.draw_boundingbox)
 
-        while self.cap.isOpened() and not self.onTracking:
+        if self.cap.isOpened() and not self.onTracking:
             ret, frame = self.cap.read()
-            if not ret:
-                break
 
-            frame, bb = self.update(frame)
+            while self.cap.isOpened() and not self.onTracking:
 
-            cv2.imshow('choosing bounding box', frame)
-            c = cv2.waitKey(self.inteval) & 0xFF
-            if c == 27 or c == ord('q'):
-                break
+                if not ret:
+                    break
+
+                frame_show, bb = self.update(frame.copy())
+
+                cv2.imshow('choosing bounding box', frame_show)
+                c = cv2.waitKey(self.inteval) & 0xFF
+                if c == 27 or c == ord('q'):
+                    break
+                if dynamic:
+                    ret, frame = self.cap.read()
 
         cv2.destroyAllWindows()
         if release_after_choosing:
