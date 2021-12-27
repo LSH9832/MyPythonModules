@@ -29,7 +29,7 @@ import cv2
 
 tracker = KCF()
 cam = cv2.VideoCapture(0)
-x,y,w,h = tracker.choose_bb(source=cam)
+x, y, w, h = tracker.choose_bb(source=cam)
 tracker.setbb((x,y,w,h))
 
 time_delay = 1
