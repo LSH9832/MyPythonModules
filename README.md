@@ -15,7 +15,7 @@
 #### 1.1.2 用法示例
 暂无
 ### 1.2 camera
-目前支持图片集、普通摄像头和双目相机，暂不支持RGBD相机，但是Windows和Ubuntu通用
+目前支持图片集、普通摄像头和双目相机，暂不支持RGBD相机，**但是Windows和Ubuntu通用**
 #### 1.2.1 需要安装的第三方模块
 - opencv-python或opencv-contrib-python
 #### 1.2.2 用法示例
