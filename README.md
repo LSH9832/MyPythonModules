@@ -35,7 +35,7 @@ double_eye = False
 
 cam = cv2.OpenSource(
     source=source,
-    double_eyes=double_eye
+    double_eyes=double_eye      # 默认为 False, 不是双目相机时可不填
 )
 cam.setsize(1280, 720) if double_eye else None
 
