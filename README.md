@@ -21,7 +21,6 @@
 #### 1.2.2 用法示例
 ```python3
 import camera as cv2
-import pysot
 
 """
 Other support format of source
