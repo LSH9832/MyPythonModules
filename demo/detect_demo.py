@@ -3,9 +3,9 @@ import cv2
 
 if __name__ == '__main__':
     detector = Detector(
-        model_path="./models/vis7s.pth",
-        model_size="s",
-        class_path="./classes/visimple.txt",
+        model_path="path to your yolox_s.pth",
+        model_size="s",     # tiny, s, m, l
+        class_path="path to your coco2017.txt",
         conf=0.25,
         nms=0.4,
         input_size=640,
@@ -18,9 +18,9 @@ if __name__ == '__main__':
     or create detector as follows
     """
     # from yolox import create_detector_from_settings
-    # detector = create_detector_from_settings("./detect_settings.yaml")
+    # detector = create_detector_from_settings("./demo/detect_settings.yaml")
 
-    cap = cv2.VideoCapture("/home/uagv/Videos/test.mp4")
+    cap = cv2.VideoCapture("path to your test.mp4")
     while cap.isOpened():
         success, image = cap.read()
         if success:
