@@ -13,7 +13,7 @@ sources = {
 
 
 def track_object(data):
-    from pysot import Tracker
+    from SiamRPN import Tracker
     from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox, QSlider, QLabel
     from PyQt5.QtGui import QIcon, QPixmap, QImage, QPalette, QBrush
     from PyQt5.QtCore import QTimer
