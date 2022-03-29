@@ -6,9 +6,9 @@ import numpy as np
 from yolox import multiDetectRtmpServer, draw_bb
 
 sources = {
-    "/home/uagv/Videos/test5.mp4": "rtmp://28.11.84.29/live/test1",
-    "/home/uagv/Videos/test4.mp4": "rtmp://28.11.84.29/live/test2",
-    # "/home/uagv/Videos/6.mp4": "rtmp://localhost/live/test3"
+    "path to your test1.mp4": "rtmp://your server ip address/live/test1",
+    "path to your test2.mp4": "rtmp://your server ip address/live/test2",
+    "path to your test3.mp4": "rtmp://your server ip address/live/test3",
 }
 
 
@@ -23,7 +23,7 @@ def track_object(data):
 
         def __init__(self, parent=None):
             super(QMainWindow, self).__init__(parent)
-            loadUi("./tracking_system.ui", self)
+            loadUi("./demo/tracking_system.ui", self)
 
             self.timer01 = QTimer()
             self.timer01.timeout.connect(self.timeoutFunction01)
@@ -55,12 +55,6 @@ def track_object(data):
             to.setPixmap(QPixmap.fromImage(img))
 
         def timeoutFunction01(self):
-            # a = QComboBox()
-            # a = QSlider()
-            # a = QLabel()
-            # a.size().width()
-            # a.value()
-
 
             conf, nms = float(self.conf_thres.value()) / 100.0, float(self.nms_thres.value()) / 100.0
             self.conf_show.setText("%.2f" % conf)
