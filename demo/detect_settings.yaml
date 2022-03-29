@@ -8,6 +8,6 @@ fp16: true
 
 # weight file
 weight_size: 's'                    # m,l,x,tiny
-model_path: './models/vis7s.pth'
-classes_file: './classes/visimple.txt'
+model_path: './models/coco2017s.pth'
+classes_file: './classes/coco2017.txt'
 is_trt_file: false
